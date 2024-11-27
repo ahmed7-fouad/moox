@@ -1,4 +1,6 @@
 import "@/shared/react-native/Next.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { getWebThemeId, getWebThemeStyleSheet, useTheme } from "@/app/styles";
 import { NextStylesheetProvider } from "@/shared/react-native/NextStylesheetProvider";
 import ReactNativeProviders from "@/shared/react-native/ReactNativeProviders";
@@ -26,6 +28,7 @@ export default function RootLayout({
         <NextStylesheetProvider>
           <ReactNativeProviders>{children}</ReactNativeProviders>
         </NextStylesheetProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
