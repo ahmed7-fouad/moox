@@ -2,7 +2,7 @@ import "@/shared/react-native/Next.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { getWebThemeId, getWebThemeStyleSheet, useTheme } from "@/app/styles";
-import { NextStylesheetProvider } from "@/shared/react-native/NextStylesheetProvider";
+import { NextStyleSheetProvider } from "@/shared/react-native/NextStyleSheetProvider";
 import ReactNativeProviders from "@/shared/react-native/ReactNativeProviders";
 
 export default function RootLayout({
@@ -25,9 +25,9 @@ export default function RootLayout({
           backgroundColor: theme.colors.back.default,
         }}
       >
-        <NextStylesheetProvider>
+        <NextStyleSheetProvider>
           <ReactNativeProviders>{children}</ReactNativeProviders>
-        </NextStylesheetProvider>
+        </NextStyleSheetProvider>
         <SpeedInsights />
       </body>
     </html>
