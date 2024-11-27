@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+
 import packageJson from "./package.json" with { type: "json" };
 
 const transpilePackages = [
@@ -9,6 +10,12 @@ const transpilePackages = [
   ),
 ];
 const nextConfig: NextConfig = {
+  transpilePackages,
+
+  env: {
+    ENV: process.env.NODE_ENV,
+  },
+
   experimental: {
     turbo: {
       rules: {
@@ -42,10 +49,32 @@ const nextConfig: NextConfig = {
       ],
     },
   },
-  transpilePackages,
 
-  env: {
-    ENV: process.env.NODE_ENV,
+  webpack: (config, { webpack }) => {
+    // react-native packages requires often global __DEV__ constant
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV === "production" || true,
+      })
+    );
+
+    // react-native-web
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      // Transform all direct `react-native` imports to `react-native-web`
+      "react-native$": "react-native-web",
+    };
+    config.resolve.extensions = [
+      ".web.js",
+      ".web.ts",
+      ".web.tsx",
+      ...config.resolve.extensions,
+    ];
+
+    // avoid duplicated react
+    // config.resolve.alias['react'] = path.resolve(__dirname, '.', 'node_modules', 'react');
+
+    return config;
   },
 };
 
