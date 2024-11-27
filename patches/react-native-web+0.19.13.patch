@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-web/dist/modules/useResponderEvents/ResponderTouchHistoryStore.js b/node_modules/react-native-web/dist/modules/useResponderEvents/ResponderTouchHistoryStore.js
+index 6f47ae6..9477279 100644
+--- a/node_modules/react-native-web/dist/modules/useResponderEvents/ResponderTouchHistoryStore.js
++++ b/node_modules/react-native-web/dist/modules/useResponderEvents/ResponderTouchHistoryStore.js
+@@ -14,7 +14,6 @@ import { isStartish, isMoveish, isEndish } from './ResponderEventTypes';
+  * when touches end and start again.
+  */
+ 
+-var __DEV__ = process.env.NODE_ENV !== 'production';
+ var MAX_TOUCH_BANK = 20;
+ function timestampForTouch(touch) {
+   // The legacy internal implementation provides "timeStamp", which has been
